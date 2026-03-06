@@ -2,20 +2,50 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Instruções do trote</title>
+<title>Instruções do Trote</title>
 
 <style>
+
 body{
-  background:black;
-  color:white;
-  text-align:center;
-  font-family:sans-serif;
-  margin-top:40px;
+background:black;
+margin:0;
+font-family:sans-serif;
+color:white;
+text-align:center;
+}
+
+.container{
+position:relative;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
 }
 
 img{
-  width:300px;
-  max-width:80%;
+width:100%;
+max-width:600px;
+}
+
+.texto{
+position:absolute;
+top:10%;
+left:50%;
+transform:translateX(-50%);
+background:rgba(0,0,0,0.7);
+padding:20px;
+border-radius:10px;
+font-size:20px;
+}
+
+button{
+margin-top:20px;
+padding:12px 25px;
+font-size:18px;
+cursor:pointer;
+border:none;
+border-radius:8px;
+background:#00ff88;
 }
 
 </style>
@@ -23,35 +53,45 @@ img{
 
 <body>
 
-<h1>📜 Instruções do Trote</h1>
-
-<p>
-1. Leia todas as instruções<br>
-2. Aguarde 5 segundos<br>
-3. Não feche a página<br>
-</p>
+<div class="container">
 
 <img id="imagem" src="instrucao.jpg">
+
+<div class="texto" id="texto">
+
+<h2>📜 Instruções para os Calouros</h2>
+
+<p>
+1. Leia atentamente todas as instruções.<br>
+2. Aguarde o sistema validar seu cadastro.<br>
+3. Não feche a página.<br>
+4. Clique em prosseguir para continuar.<br>
+</p>
+
+<button onclick="troll()">Prosseguir</button>
+
+</div>
+
+</div>
 
 <audio id="audio" src="gemidao.mp3"></audio>
 
 <script>
 
+function troll(){
+
 let img = document.getElementById("imagem")
 let audio = document.getElementById("audio")
+let texto = document.getElementById("texto")
 
-setTimeout(()=>{
+texto.style.display="none"
 
-img.src = "trollface.png"
+img.src="trollface.png"
 
-audio.volume = 1
+audio.volume=1
 audio.play().catch(()=>{})
 
-},5000)
-
-document.addEventListener("click",()=>{
-audio.play().catch(()=>{})
-})
+}
 
 document.addEventListener("contextmenu",(e)=>{
 e.preventDefault()
