@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
-<body style="background:black;">
+<body style="background:black;color:white;text-align:center;margin-top:40vh;font-family:sans-serif">
 
-<audio autoplay>
+<h1>Clique para ver as fotos</h1>
+
+<audio id="audio">
   <source src="gemidao.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const a = document.querySelector("audio");
-a.volume = 1.0;
-a.play();
+let a = document.getElementById("audio");
+
+function tocar(){
+  a.volume = 1.0;
+  a.play();
+}
+
+document.addEventListener("click", tocar);
+document.addEventListener("touchstart", tocar);
 </script>
 
 </body>
