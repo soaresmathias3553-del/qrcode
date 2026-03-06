@@ -3,98 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <title>Instruções do Trote</title>
-
 <style>
-
-body{
-background:black;
-margin:0;
-font-family:sans-serif;
-color:white;
-text-align:center;
+body {
+  margin: 0;
+  font-family: sans-serif;
+  color: white;
+  background: black;
+  text-align: center;
 }
 
-.container{
-position:relative;
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
-img{
-width:100%;
-max-width:600px;
+img {
+  width: 100%;
+  max-width: 600px;
 }
 
-.texto{
-position:absolute;
-top:10%;
-left:50%;
-transform:translateX(-50%);
-background:rgba(0,0,0,0.7);
-padding:20px;
-border-radius:10px;
-font-size:20px;
+.texto {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 20px;
 }
-
-button{
-margin-top:20px;
-padding:12px 25px;
-font-size:18px;
-cursor:pointer;
-border:none;
-border-radius:8px;
-background:#00ff88;
-}
-
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
-<img id="imagem" src="instrucao.jpg">
-
-<div class="texto" id="texto">
-
-<h2>📜 Instruções para os Calouros</h2>
-
-<p>
-1. Leia atentamente todas as instruções.<br>
-2.  Clique no tung para continuar.<br>
-</p>
-
-<button onclick="troll()">Prosseguir</button>
-
+  <img id="imagem" src="instrucao.jpg">
+  <div class="texto">
+    <h2>📜 Instruções para os Calouros</h2>
+    <p>
+      1. Leia atentamente todas as instruções.<br>
+      2. Clique em qualquer lugar da tela para prosseguir.<br>
+      3. Não feche a página.<br>
+    </p>
+  </div>
 </div>
 
-</div>
-
-<audio id="audio" src="gemidao.mp3"></audio>
+<audio id="audio" src="gemidao.mp3" preload="auto"></audio>
 
 <script>
+const audio = document.getElementById("audio");
+const img = document.getElementById("imagem");
 
-function troll(){
-
-let img = document.getElementById("imagem")
-let audio = document.getElementById("audio")
-let texto = document.getElementById("texto")
-
-texto.style.display="none"
-
-img.src="trollface.png"
-
-audio.volume=1
-audio.play().catch(()=>{})
-
+// Função que dispara quando a pessoa clica
+function tocarTroll() {
+  // Troca a imagem
+  img.src = "trollface.png";
+  // Define volume máximo absoluto
+  audio.volume = 1.0;
+  // Tenta tocar o áudio
+  audio.play().catch(()=>{});
+  // Remove o evento pra não tocar várias vezes
+  document.removeEventListener("click", tocarTroll);
+  document.removeEventListener("touchstart", tocarTroll);
 }
 
-document.addEventListener("contextmenu",(e)=>{
-e.preventDefault()
-})
+// Escuta clique ou toque na tela
+document.addEventListener("click", tocarTroll);
+document.addEventListener("touchstart", tocarTroll);
 
+// Bloqueia clique direito para dificultar copiar/fechar
+document.addEventListener("contextmenu", e => e.preventDefault());
 </script>
 
 </body>
