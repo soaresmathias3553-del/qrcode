@@ -1,24 +1,33 @@
 <!DOCTYPE html>
-<html>
-<body style="background:black;color:white;text-align:center;margin-top:40vh;font-family:sans-serif">
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Presente para você!</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f0f0f0; }
+        #btn-play { padding: 20px 40px; font-size: 24px; cursor: pointer; background: #ff4757; color: white; border: none; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
 
-<h1>Clique para ver as fotos</h1>
+    <button id="btn-play">CLIQUE PARA VER O VÍDEO 🎥</button>
 
-<audio id="audio">
-  <source src="gemidao.mp3" type="audio/mpeg">
-</audio>
+    <audio id="audio-estourado">
+        <source src="gemidao.mp3" type="audio/mpeg">
+    </audio>
 
-<script>
-let a = document.getElementById("audio");
+    <script>
+        const btn = document.getElementById('btn-play');
+        const audio = document.getElementById('audio-estourado');
 
-function tocar(){
-  a.volume = 1.0;
-  a.play();
-}
-
-document.addEventListener("click", tocar);
-document.addEventListener("touchstart", tocar);
-</script>
-
+        btn.addEventListener('click', () => {
+            audio.volume = 1.0; // Volume no talo
+            audio.play();
+            btn.innerText = "PEGADINHA DO MALLANDRO!";
+            
+            // Opcional: Esconder o botão depois do susto
+            // btn.style.display = 'none';
+        });
+    </script>
 </body>
 </html>
